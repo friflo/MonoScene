@@ -17,7 +17,7 @@ namespace MonoScene.Graphics.Pipeline
         {
             _Device = device;
 
-            TagConverter = item => item.Extras.ToJson();
+            // TagConverter = item => item.Extras.ToJson();  TODO commented - implement by what?
         }
 
         #endregion
