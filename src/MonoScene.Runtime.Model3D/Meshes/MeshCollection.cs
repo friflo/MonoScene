@@ -61,7 +61,7 @@ namespace MonoScene.Graphics
 
         #region API
 
-        public IEnumerator<Mesh> GetEnumerator() { return (IEnumerator<Mesh>)_Meshes.GetEnumerator(); }
+        public IEnumerator<Mesh> GetEnumerator() { return ((IEnumerable<Mesh>)_Meshes).GetEnumerator(); }
 
         IEnumerator IEnumerable.GetEnumerator() { return _Meshes.GetEnumerator(); }
 
