@@ -23,9 +23,11 @@ namespace MonoScene.Graphics.Content
             {
                 var srcModel = new ModelTemplate(models, i).CreateInstance();
                 var bounds = EvaluateBoundingSphere(srcModel, models._SharedMeshes);
+                var bbox   = EvaluateBoundingBBox(srcModel, models._SharedMeshes);
 
                 var dstModel = models._Models[i];
                 dstModel.ModelBounds = bounds;
+                dstModel.ModelBBox   = bbox;
             }
 
             return models;
@@ -37,6 +39,13 @@ namespace MonoScene.Graphics.Content
                 .SelectMany(item => new[] { item.A, item.B, item.C });
 
             return Microsoft.Xna.Framework.BoundingSphere.CreateFromPoints(triangles);
+        }
+        
+        private static Microsoft.Xna.Framework.BoundingBox EvaluateBoundingBBox(ModelInstance srcModel, MeshCollectionContent srcMeshes)
+        {
+            var triangles = EvaluateTriangles(srcModel, srcMeshes)
+                .SelectMany(item => new[] { item.A, item.B, item.C });
+            return Microsoft.Xna.Framework.BoundingBox.CreateFromPoints(triangles);
         }
 
         private static IEnumerable<(XNAV3 A, XNAV3 B, XNAV3 C)> EvaluateTriangles(ModelInstance srcModel, MeshCollectionContent srcMeshes)

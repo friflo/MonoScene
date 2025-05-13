@@ -28,7 +28,8 @@ namespace MonoScene.Graphics
             _Armature = collection._SharedArmatures[srcModel.ArmatureLogicalIndex];
             _Drawables = srcModel.DrawableReferences;
 
-            _ModelBounds = srcModel.ModelBounds;            
+            _ModelBounds = srcModel.ModelBounds;
+            _ModelBBox   = srcModel.ModelBBox;
         }
 
         #endregion
@@ -39,6 +40,7 @@ namespace MonoScene.Graphics
         internal readonly IReadOnlyList<DrawableContent> _Drawables;
 
         private readonly Microsoft.Xna.Framework.BoundingSphere _ModelBounds;
+        private readonly Microsoft.Xna.Framework.BoundingBox    _ModelBBox;
 
         private IMeshCollection _SharedMeshes;
         private Effect[] _SharedEffects;        
@@ -48,6 +50,7 @@ namespace MonoScene.Graphics
         #region properties        
 
         public Microsoft.Xna.Framework.BoundingSphere ModelBounds => _ModelBounds;
+        public Microsoft.Xna.Framework.BoundingBox    ModelBBox   => _ModelBBox;
 
         public IMeshCollection Meshes
         {

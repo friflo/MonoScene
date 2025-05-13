@@ -22,7 +22,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="..\SharedResources\CesiumMan.glb" Link="Content\CesiumMan.glb" CopyToOutputDirectory="PreserveNewest" />    
+    <Content Include="..\SharedResources\Avocado.glb" Link="Content\Avocado.glb" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\SharedResources\BrainStem.glb" Link="Content\BrainStem.glb" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\SharedResources\CesiumMan.glb" Link="Content\CesiumMan.glb" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\SharedResources\haunted_house.glb" Link="Content\haunted_house.glb" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\SharedResources\shark.glb" Link="Content\shark.glb" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\SharedResources\WaterBottle.glb" Link="Content\WaterBottle.glb" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\SharedResources\cube.glb" Link="Content\cube.glb" CopyToOutputDirectory="PreserveNewest" />      
   </ItemGroup>
 
   <ItemGroup>

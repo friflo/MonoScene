@@ -32,3 +32,5 @@ obj/
 Ankh.NoLoad
 .vs/
 project.lock.json
+
+.idea/

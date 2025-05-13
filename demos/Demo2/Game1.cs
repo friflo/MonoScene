@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -28,7 +29,8 @@ namespace Demo2
         {
             var factory = new MonoScene.Graphics.Pipeline.GltfModelFactory(this.GraphicsDevice);
 
-            _ModelTemplate = factory.LoadModel("Content\\CesiumMan.glb");            
+            _ModelTemplate = factory.LoadModel("Content\\CesiumMan.glb");
+            // _ModelTemplate = factory.LoadModel("Content\\WaterBottle.glb");
         }
 
         protected override void UnloadContent()
@@ -54,16 +56,20 @@ namespace Demo2
         #region Game Loop
 
         private ModelInstance _ModelView1;
+        
+        Vector3 mdlPos;
 
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape)) Exit();
-
+            var bbox   = _ModelTemplate.DefaultModel.ModelBBox;
+            var size   = bbox.Max - bbox.Min;
+            var center = bbox.Min + size * 0.5f;
             _ModelView1 ??= _ModelTemplate.DefaultModel.CreateInstance();
 
-            var mdlPos = new Vector3(3.5f, 0, 0);
+            mdlPos = center; // _ModelView1.ModelBounds.Center;
 
-            _ModelView1.WorldMatrix = Matrix.CreateRotationY(0.25f * (float)gameTime.TotalGameTime.TotalSeconds) * Matrix.CreateTranslation(mdlPos);
+            _ModelView1.WorldMatrix = Matrix.CreateRotationY(0.25f * (float)gameTime.TotalGameTime.TotalSeconds); // * Matrix.CreateTranslation(mdlPos);
             _ModelView1.Armature.SetAnimationFrame(0, (float)gameTime.TotalGameTime.TotalSeconds);
 
             base.Update(gameTime);
@@ -73,12 +79,16 @@ namespace Demo2
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            var camPos = Vector3.Zero;            
+            var camDistance = 2.5f * _ModelView1.WorldBounds.Radius;
+            var camPos = mdlPos + new Vector3(camDistance, 0, 0);
+            // Console.WriteLine($"cam: {camPos}  mdl: {mdlPos}");
 
-            var camX = Matrix.CreateWorld(Vector3.Zero, _ModelView1.WorldBounds.Center - camPos, Vector3.UnitY);
+            var camX = Matrix.CreateWorld(camPos, mdlPos - camPos, Vector3.UnitY);
 
             var dc = new ModelDrawingContext(_Graphics.GraphicsDevice);
-
+            dc.FieldOfView = 45f / 180f * MathF.PI;
+            dc.NearPlane = camDistance - _ModelView1.WorldBounds.Radius; // _ModelView1.WorldBounds.Radius; // must be smaller than camDistance
+            
             dc.SetCamera(camX);
 
             dc.DrawModelInstance(_LightsAndFog, _ModelView1);
