@@ -110,7 +110,7 @@ namespace MonoScene.Graphics.Pipeline
 
             if (element.VertexElementFormat == VertexElementFormat.Vector2)
             {
-                System.Runtime.InteropServices.MemoryMarshal.Write(dstVertex, ref value);
+                System.Runtime.InteropServices.MemoryMarshal.Write(dstVertex, value);
                 return;
             }
 
@@ -123,14 +123,14 @@ namespace MonoScene.Graphics.Pipeline
 
             if (element.VertexElementFormat == VertexElementFormat.Vector3)
             {
-                System.Runtime.InteropServices.MemoryMarshal.Write(dstVertex, ref value);
+                System.Runtime.InteropServices.MemoryMarshal.Write(dstVertex, value);
                 return;
             }
 
             if (element.VertexElementFormat == VertexElementFormat.Color)
             {
                 var c = new Color(value);
-                System.Runtime.InteropServices.MemoryMarshal.Write(dstVertex, ref c);
+                System.Runtime.InteropServices.MemoryMarshal.Write(dstVertex, c);
                 return;
             }
 
@@ -143,42 +143,42 @@ namespace MonoScene.Graphics.Pipeline
 
             if (element.VertexElementFormat == VertexElementFormat.Vector4)
             {
-                System.Runtime.InteropServices.MemoryMarshal.Write(dstVertex, ref value);
+                System.Runtime.InteropServices.MemoryMarshal.Write(dstVertex, value);
                 return;
             }
 
             if (element.VertexElementFormat == VertexElementFormat.Byte4)
             {
                 var c = new Byte4(value);
-                System.Runtime.InteropServices.MemoryMarshal.Write(dstVertex, ref c);
+                System.Runtime.InteropServices.MemoryMarshal.Write(dstVertex, c);
                 return;
             }
 
             if (element.VertexElementFormat == VertexElementFormat.Color)
             {
                 var c = new Color(value);
-                System.Runtime.InteropServices.MemoryMarshal.Write(dstVertex, ref c);
+                System.Runtime.InteropServices.MemoryMarshal.Write(dstVertex, c);
                 return;
             }
 
             if (element.VertexElementFormat == VertexElementFormat.Short4)
             {
                 var ns = new Short4(value);
-                System.Runtime.InteropServices.MemoryMarshal.Write(dstVertex, ref ns);
+                System.Runtime.InteropServices.MemoryMarshal.Write(dstVertex, ns);
                 return;
             }
 
             if (element.VertexElementFormat == VertexElementFormat.NormalizedShort4)
             {
                 var ns = new NormalizedShort4(value);
-                System.Runtime.InteropServices.MemoryMarshal.Write(dstVertex, ref ns);
+                System.Runtime.InteropServices.MemoryMarshal.Write(dstVertex, ns);
                 return;
             }
 
             if (element.VertexElementFormat == VertexElementFormat.HalfVector4)
             {
                 var ns = new HalfVector4(value);
-                System.Runtime.InteropServices.MemoryMarshal.Write(dstVertex, ref ns);
+                System.Runtime.InteropServices.MemoryMarshal.Write(dstVertex, ns);
                 return;
             }
 
@@ -192,13 +192,13 @@ namespace MonoScene.Graphics.Pipeline
             if (element.VertexElementFormat == VertexElementFormat.Vector4)
             {
                 var v4 = value.ToVector4();
-                System.Runtime.InteropServices.MemoryMarshal.Write(dstVertex, ref v4);
+                System.Runtime.InteropServices.MemoryMarshal.Write(dstVertex, v4);
                 return;
             }
 
             if (element.VertexElementFormat == VertexElementFormat.Short4)
             {
-                System.Runtime.InteropServices.MemoryMarshal.Write(dstVertex, ref value);
+                System.Runtime.InteropServices.MemoryMarshal.Write(dstVertex, value);
                 return;
             }
 
