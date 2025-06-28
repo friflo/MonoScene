@@ -3,6 +3,7 @@
 
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.DesktopGL" PrivateAssets="all" Version="3.8.4" />
+    <!-- <PackageReference Include="nkast.Kni.Platform.SDL2.GL"   PrivateAssets="all" Version="4.1.9001"/> -->
   </ItemGroup>
   <!--
   <PropertyGroup>
